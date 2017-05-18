@@ -38,10 +38,40 @@ router.route('/bears')
         res.send(err);
 
       res.json({message: "Retrieved Bears", bears: bears});
-    })
+    });
   });
 
 router.route('/bears/:bear_id')
+  .get(function(req, res){
+    Bear.findById(req.params.bear_id, function(err, bear){
+      if(err)
+        res.send(err);
+
+      res.json({message:"Retrieved Bear", bear: bear});
+    });
+  })
+  .put(function(req, res){
+      Bear.findById(req.params.bear_id, function(err, bear){
+        if(err)
+          res.send(err);
+
+        bear.name = req.body.name;
+        bear.save(function(err){
+          if(err)
+            res.send(err);
+
+          res.json({ message: 'Bear Updated!' });
+        });
+      });
+    })
+  .delete(function(req, res){
+      Bear.remove({ _id: req.params.bear_id }, function(err, bear){
+        if(err)
+          res.send(err)
+
+        res.json({message: "Bear Deleted!"})
+      });
+  });
 
 router.get('/', function(req, res){
   res.json({"message":"Hooray! This is our new api."});
