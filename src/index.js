@@ -4,7 +4,8 @@ var express     = require('express');
 var app         = express();
 var bodyParser  = require('body-parser');
 var mongoose    = require('mongoose');
-mongoose.connect('mongodb://localhost/showcasedb');
+//mongoose.connect('mongodb://localhost/showcasedb');
+mongoose.connect('mongodb://bluerid:Bluecafe123@ds147551.mlab.com:47551/restmon');
 var Bear        = require('./app/models/bear');
 
 //configure app to use bodyParser()
