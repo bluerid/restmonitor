@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 const bearsRoutes = require('./app/routes/bears');
 var port = process.env.PORT || 8080;
 
-app.use('/api', bearsRoutes(app));
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -19,5 +18,5 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-
+app.use('/api', bearsRoutes(app));
 app.listen(port);
