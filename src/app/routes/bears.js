@@ -1,7 +1,7 @@
 const express = require('express');
 var router = express.Router();
 var mongoose    = require('mongoose');
-mongoose.connect('mongodb://localhost/showcasedb');
+mongoose.connect('mongodb://restuser:restpass@ds147551.mlab.com:47551/restmon');
 var Bear        = require('../models/bear');
 
 module.exports = app => {
